@@ -8,11 +8,11 @@ let agent_right_image;
 
 
 function setup() {
-    wumpus_image = loadImage('http://localhost:8080/assets/wumpus.png');
-    agent_up_image = loadImage('http://localhost:8080/assets/agent_up.png');
-    agent_down_image = loadImage('http://localhost:8080/assets/agent_down.png');
-    agent_left_image = loadImage('http://localhost:8080/assets/agent_left.png');
-    agent_right_image = loadImage('http://localhost:8080/assets/agent_right.png');
+    wumpus_image = loadImage('assets/wumpus.png');
+    agent_up_image = loadImage('assets/agent_up.png');
+    agent_down_image = loadImage('assets/agent_down.png');
+    agent_left_image = loadImage('assets/agent_left.png');
+    agent_right_image = loadImage('assets/agent_right.png');
     createCanvas(canvasSize, canvasSize);
     world = new World();
 }
