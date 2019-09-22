@@ -1,0 +1,23 @@
+{
+  "name": "wumpus-world",
+  "version": "1.0.0",
+  "description": "The Wumpus world is a simple world example to illustrate the worth of a knowledge-based agent and to represent knowledge representation. It was inspired by a video game Hunt the Wumpus by Gregory Yob in 1973.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luka1199/wumpus-world.git"
+  },
+  "author": "Luka Steinbach",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luka1199/wumpus-world/issues"
+  },
+  "homepage": "https://github.com/luka1199/wumpus-world#readme",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "serve-static": "^1.14.1"
+  }
+}

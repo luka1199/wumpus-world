@@ -21,6 +21,7 @@ function draw() {
     background(255);
     smooth();
     world.display();
+    // console.log(mouseX, mouseY);
 }
 
 function keyPressed() {
@@ -40,19 +41,23 @@ function keyPressed() {
 class World {
     constructor() {
         this.roomSize = canvasSize / 4;
-        this.visible = [
-            [false, false, false, false],
-            [false, false, false, false],
-            [false, false, false, false],
-            [false, false, false, false]
-        ];
+        this.rooms = [];
+        this.createRooms();
 
         this.agent = new Agent(createVector(0, 0), this);
-        this.showRoom(0, 0);
+    }
+
+    createRooms() {
+        for (var i = 0; i < 4; i++) {
+            this.rooms.push(new Array());
+            for (var j = 0; j < 4; j++) {
+                this.rooms[i].push(new Room(createVector(i, j), this.roomSize));
+            }
+        }
     }
 
     showRoom(x, y) {
-        this.visible[x][y] = true;
+        this.rooms[x][y].show();
     }
 
     display() {
@@ -61,16 +66,9 @@ class World {
     }
 
     displayGrid() {
-        strokeWeight(2);
-        stroke(30);
-        for (var i = 0; i <= 3; i++) {
-            for (var j = 0; j <= 3; j++) {
-                if (this.visible[i][j] == true) {
-                    fill(255);
-                } else {
-                    fill(150);
-                }
-                square(i * this.roomSize, j * this.roomSize, this.roomSize);
+        for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < 4; j++) {
+                this.rooms[i][j].display();
             }
         }
 
@@ -80,6 +78,52 @@ class World {
         this.agent.display();
     }
 
+}
+
+class Room {
+    constructor(pos, roomSize) {
+        this.position = pos;
+        this.size = roomSize;
+        this.attributes = new Set();
+        this.visible = false;
+    }
+
+    show() {
+        this.visible = true;
+    }
+
+    hide() {
+        this.visible = false;
+    }
+
+    addAttribute(attr) {
+        this.attributes.add(attr);
+    }
+
+    removeAttribute(attr) {
+        this.attributes.delete(attr);
+    }
+
+    display() {
+        strokeWeight(2);
+        stroke(30);
+        if (this.visible) {
+            fill(255);
+        } else {
+            fill(150);
+        }
+        square(this.position.x * this.size, this.position.y * this.size, this.size);
+
+        fill(0);
+        textSize(18);
+        textAlign(CENTER, TOP);
+        strokeWeight(0.5);
+        let s = "";
+        this.attributes.forEach((value) => {
+            s += value + "\n"
+        });
+        text(s, this.position.x * this.size, this.position.y * this.size + 20, this.size, this.size - 20);
+    }
 }
 
 class Wumpus {
@@ -97,6 +141,7 @@ class Agent {
         this.position = pos;
         this.direction = 1;
         this.world = world;
+        world.showRoom(0, 0);
     }
 
     display() {
