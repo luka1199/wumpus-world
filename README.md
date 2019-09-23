@@ -7,3 +7,5 @@ The Wumpus world is a simple world example to illustrate the worth of a knowledg
 node app.js
 ```
 ```http://localhost:8080/```
+
+https://luka1199.github.io/wumpus-world/
