@@ -57,7 +57,7 @@ class Room {
         if (this.visible) {
             fill(255);
             square(this.position.x * this.size, this.position.y * this.size, this.size);
-            if (this.objects.length > 0) {
+            if (this.objects.size > 0) {
                 this.objects.forEach(obj => {
                     obj.display();
                 });

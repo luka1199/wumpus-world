@@ -28,24 +28,47 @@ class World {
         availableRooms.splice(availableRooms.indexOf(this.agent.position.x + " " + this.agent.position.y), 1);
 
         // Add Wumpus
-        var wumpusIndex = getRandomInt(availableRooms.length);
+        var wumpusIndex = getRandomInt(availableRooms.length - 1);
         var wumpusX = parseInt(availableRooms[wumpusIndex].split(" ")[0]);
         var wumpusY = parseInt(availableRooms[wumpusIndex].split(" ")[1]);
         availableRooms.splice(wumpusIndex, 1);
         this.getRoom(wumpusX, wumpusY).addObject(new Wumpus(createVector(wumpusX, wumpusY), this));
+        for (var i = -1; i < 1; i++) {
+            for (var j = -1; j <= 1; j++) {
+                if (i != 0 || j != 0) {
+                    if (this.getRoom(wumpusX + i, wumpusY + j) != null) {
+                        this.getRoom(wumpusX + i, wumpusY + j).addAttribute("Stench");
+                    }
+                }
+            }
+        }
+
 
         // Add Pits
         for (var i = 0; i < Math.floor((this.roomsPerRow * this.roomsPerRow) / 8); i++) {
-            var pitIndex = getRandomInt(availableRooms.length);
+            var pitIndex = getRandomInt(availableRooms.length - 1);
             var pitX = parseInt(availableRooms[pitIndex].split(" ")[0]);
             var pitY = parseInt(availableRooms[pitIndex].split(" ")[1]);
             availableRooms.splice(pitIndex, 1);
             this.getRoom(pitX, pitY).addObject(new Pit(createVector(pitX, pitY), this));
+            for (var dx = -1; dx <= 1; dx++) {
+                for (var dy = -1; dy <= 1; dy++) {
+                    if (dx != 0 || dy != 0) {
+                        if (this.getRoom(pitX + dx, pitY + dy) != null) {
+                            this.getRoom(pitX + dx, pitY + dy).addAttribute("Breeze");
+                        }
+                    }
+                }
+            }
         }
     }
 
     getRoom(x, y) {
-        return this.rooms[x][y]
+        if (x < 0 || x > this.roomsPerRow - 1 || y < 0 || y > this.roomsPerRow - 1) {
+            return null;
+        } else {
+            return this.rooms[x][y]
+        }
     }
 
     showRoom(x, y) {
