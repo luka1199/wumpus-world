@@ -1,5 +1,5 @@
 let canvasSize = 600;
-let roomsPerRow = 5;
+let roomsPerRow = 4;
 let wumpusWorld;
 let wumpus_image;
 let agent_up_image;
