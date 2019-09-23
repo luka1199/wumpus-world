@@ -26,6 +26,9 @@ class World {
         }
         // Remove agent position
         availableRooms.splice(availableRooms.indexOf(this.agent.position.x + " " + this.agent.position.y), 1);
+        availableRooms.splice(availableRooms.indexOf((this.agent.position.x + 1) + " " + this.agent.position.y), 1);
+        availableRooms.splice(availableRooms.indexOf(this.agent.position.x + " " + (this.agent.position.y + 1)), 1);
+        availableRooms.splice(availableRooms.indexOf((this.agent.position.x + 1) + " " + (this.agent.position.y + 1)), 1);
 
         // Add Wumpus
         var wumpusIndex = getRandomInt(availableRooms.length - 1);
