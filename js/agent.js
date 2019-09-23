@@ -3,6 +3,7 @@ class Agent {
         this.position = pos;
         this.direction = 1;
         this.world = world;
+        this.alive = true;
         world.showRoom(0, 0);
     }
 
@@ -12,17 +13,19 @@ class Agent {
             case 0:
                 img = agent_right_image;
                 break;
-            case 1:
-                img = agent_down_image;
+                case 1:
+                    img = agent_down_image;
                 break;
-            case 2:
-                img = agent_left_image;
+                case 2:
+                    img = agent_left_image;
                 break;
-            case 3:
-                img = agent_up_image;
-                break;
+                case 3:
+                    img = agent_up_image;
+                    break;
         }
-        image(img, this.position.x * this.world.roomSize, this.position.y * this.world.roomSize, this.world.roomSize, this.world.roomSize);
+        if (this.alive) {
+            image(img, this.position.x * this.world.roomSize, this.position.y * this.world.roomSize, this.world.roomSize, this.world.roomSize);
+        }
     }
 
     up() {
@@ -30,17 +33,19 @@ class Agent {
             this.direction = 3;
         } else if (this.position.y > 0) {
             this.position.y--;
-            world.showRoom(this.position.x, this.position.y);
+            this.world.showRoom(this.position.x, this.position.y);
         }
+        this.checkCurrentRoom();
     }
 
     down() {
         if (this.direction != 1) {
             this.direction = 1;
-        } else if (this.position.y < world.roomsPerRow - 1) {
+        } else if (this.position.y < this.world.roomsPerRow - 1) {
             this.position.y++;
-            world.showRoom(this.position.x, this.position.y);
+            this.world.showRoom(this.position.x, this.position.y);
         }
+        this.checkCurrentRoom();
     }
 
     left() {
@@ -48,16 +53,26 @@ class Agent {
             this.direction = 2;
         } else if (this.position.x > 0) {
             this.position.x--;
-            world.showRoom(this.position.x, this.position.y);
+            this.world.showRoom(this.position.x, this.position.y);
         }
+        this.checkCurrentRoom();
     }
 
     right() {
         if (this.direction != 0) {
             this.direction = 0;
-        } else if (this.position.x < world.roomsPerRow - 1) {
+        } else if (this.position.x < this.world.roomsPerRow - 1) {
             this.position.x++;
-            world.showRoom(this.position.x, this.position.y);
+            this.world.showRoom(this.position.x, this.position.y);
+        }
+        this.checkCurrentRoom();
+    }
+
+    checkCurrentRoom() {
+        if (this.world.getRoom(this.position.x, this.position.y).containsWumpus() || this.world.getRoom(this.position.x, this.position.y).containsPit()) {
+            this.world.showAllRooms();
+            this.alive = false;
         }
     }
+
 }

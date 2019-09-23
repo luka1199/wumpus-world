@@ -1,11 +1,12 @@
-let canvasSize = 500;
-let roomsPerRow = 6;
-let world;
+let canvasSize = 600;
+let roomsPerRow = 5;
+let wumpusWorld;
 let wumpus_image;
 let agent_up_image;
 let agent_down_image;
 let agent_left_image;
 let agent_right_image;
+let pit_image;
 
 
 function setup() {
@@ -14,26 +15,31 @@ function setup() {
     agent_down_image = loadImage('assets/agent_down.png');
     agent_left_image = loadImage('assets/agent_left.png');
     agent_right_image = loadImage('assets/agent_right.png');
+    pit_image = loadImage('assets/pit.png');
     var canvas = createCanvas(canvasSize, canvasSize);
     canvas.parent("canvas-container");
-    world = new World(roomsPerRow);
+    wumpusWorld = new World(roomsPerRow);
 }
 
 function draw() {
     background(255);
     smooth();
-    world.display();
+    wumpusWorld.display();
 }
 
 function keyPressed() {
     if (keyCode === UP_ARROW) {
-        world.agent.up();
+        wumpusWorld.agent.up();
     } else if (keyCode === DOWN_ARROW) {
-        world.agent.down();
+        wumpusWorld.agent.down();
     } else if (keyCode === LEFT_ARROW) {
-        world.agent.left();
+        wumpusWorld.agent.left();
     } else if (keyCode === RIGHT_ARROW) {
-        world.agent.right();
+        wumpusWorld.agent.right();
     }
 
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
 }
