@@ -34,10 +34,12 @@ class Room {
 
     addArrow() {
         this.containsArrow = true;
+        this.addAttribute("Arrow");
     }
 
     removeArrow() {
         this.containsArrow = false;
+        this.removeAttribute("Arrow");
     }
 
     containsWumpus() {
@@ -64,7 +66,8 @@ class Room {
         strokeWeight(2);
         stroke(30);
         if (this.visible) {
-            fill(255);
+            image(terrain_image, this.position.x * this.size, this.position.y * this.size, this.size, this.size);
+            noFill();
             square(this.position.x * this.size, this.position.y * this.size, this.size);
             if (this.objects.size > 0) {
                 this.objects.forEach(obj => {

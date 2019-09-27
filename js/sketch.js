@@ -1,21 +1,29 @@
-let canvasSize = 600;
-let roomsPerRow = 6;
+let canvasSize = 750;
+let roomsPerRow = 4;    
 let wumpusWorld;
 let wumpus_image;
+let wumpus_dead_image;
 let agent_up_image;
 let agent_down_image;
 let agent_left_image;
 let agent_right_image;
+let arrow_overlay_image;
+let terrain_image;
+let bell_sound;
 let pit_image;
 
 
 function setup() {
     wumpus_image = loadImage('assets/wumpus.png');
+    wumpus_dead_image = loadImage('assets/wumpus_dead.png');
     agent_up_image = loadImage('assets/agent_up.png');
     agent_down_image = loadImage('assets/agent_down.png');
     agent_left_image = loadImage('assets/agent_left.png');
     agent_right_image = loadImage('assets/agent_right.png');
+    arrow_overlay_image = loadImage('assets/arrow_overlay.png')
     pit_image = loadImage('assets/pit.png');
+    terrain_image = loadImage('assets/terrain.png');
+    bell_sound = loadSound('assets/bell.wav');
     var canvas = createCanvas(canvasSize, canvasSize);
     canvas.parent("canvas-container");
     wumpusWorld = new World(roomsPerRow);

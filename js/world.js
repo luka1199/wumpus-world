@@ -5,6 +5,7 @@ class World {
         this.rooms = [];
         this.createRooms();
         this.agent = new Agent(createVector(0, 0), this);
+        this.wumpus = null;
         this.spawnObjects();
     }
 
@@ -35,7 +36,8 @@ class World {
         var wumpusX = parseInt(availableRooms[wumpusIndex].split(" ")[0]);
         var wumpusY = parseInt(availableRooms[wumpusIndex].split(" ")[1]);
         availableRooms.splice(wumpusIndex, 1);
-        this.getRoom(wumpusX, wumpusY).addObject(new Wumpus(createVector(wumpusX, wumpusY), this));
+        this.wumpus = new Wumpus(createVector(wumpusX, wumpusY), this);
+        this.getRoom(wumpusX, wumpusY).addObject(this.wumpus);
         for (var i = -1; i <= 1; i++) {
             for (var j = -1; j <= 1; j++) {
                 if (i != 0 || j != 0) {

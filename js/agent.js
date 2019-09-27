@@ -27,6 +27,9 @@ class Agent {
         }
         if (this.alive) {
             image(img, this.position.x * this.world.roomSize, this.position.y * this.world.roomSize, this.world.roomSize, this.world.roomSize);
+            if (this.hasArrow) {
+                image(arrow_overlay_image, this.position.x * this.world.roomSize, this.position.y * this.world.roomSize, this.world.roomSize, this.world.roomSize);
+            }
         }
     }
 
@@ -78,6 +81,7 @@ class Agent {
         if (this.world.getRoom(this.position.x, this.position.y).containsArrow) {
             this.world.getRoom(this.position.x, this.position.y).removeArrow();
             this.hasArrow = true;
+            bell_sound.play();
             console.log("Arrow!");
         }
     }
@@ -87,13 +91,14 @@ class Agent {
         if (!this.hasArrow) {
             return;
         }
+        var victory = true;
         switch (this.direction){
             case 0:
                 var y = this.position.y;
                 for (var x = this.position.x; x < roomsPerRow; x++) {
                     if (this.world.getRoom(x, y).containsWumpus()) {
-                        console.log("Victory!");
-                        this.world.showAllRooms();
+                        victory = true;
+                        break;
                     }
                 }
                 break;
@@ -101,29 +106,34 @@ class Agent {
                 var x = this.position.x;
                 for (var y = this.position.y; y < roomsPerRow; y++) {
                     if (this.world.getRoom(x, y).containsWumpus()) {
-                        console.log("Victory!");
-                        this.world.showAllRooms();
+                        victory = true;
+                        break;
                     }
                 }
                 break;
             case 2:
                 var y = this.position.y;
-                for (var x = this.position.x; x > 0; x--) {
+                for (var x = this.position.x; x >= 0; x--) {
                     if (this.world.getRoom(x, y).containsWumpus()) {
-                        console.log("Victory!");
-                        this.world.showAllRooms();
+                        victory = true;
+                        break;
                     }
                 }
                 break;
             case 3:
                 var x = this.position.x;
-                for (var y = this.position.y; y > 0; y--) {
+                for (var y = this.position.y; y >= 0; y--) {
                     if (this.world.getRoom(x, y).containsWumpus()) {
-                        console.log("Victory!");
-                        this.world.showAllRooms();
+                        victory = true;
+                        break;
                     }
                 }
                 break;
+        }
+        if (victory) {
+            this.world.wumpus.kill();
+            console.log("Victory!");
+            this.world.showAllRooms();
         }
 
         this.hasArrow = false;
