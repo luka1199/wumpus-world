@@ -33,61 +33,80 @@ class Agent {
         }
     }
 
+    getCurrentRoom() {
+        return this.world.getRoom(this.position.x, this.position.y);
+    }
+
     up() {
-        if (this.direction != 3) {
-            this.direction = 3;
-        } else if (this.position.y > 0) {
-            this.position.y--;
-            this.world.showRoom(this.position.x, this.position.y);
+        if (this.alive) {
+            if (this.direction != 3) {
+                this.direction = 3;
+            } else if (this.position.y > 0) {
+                this.position.y--;
+                this.world.showRoom(this.position.x, this.position.y);
+            }
+            this.checkCurrentRoom();
         }
-        this.checkCurrentRoom();
     }
 
     down() {
-        if (this.direction != 1) {
-            this.direction = 1;
-        } else if (this.position.y < this.world.roomsPerRow - 1) {
-            this.position.y++;
-            this.world.showRoom(this.position.x, this.position.y);
+        if (this.alive) {
+            if (this.direction != 1) {
+                this.direction = 1;
+            } else if (this.position.y < this.world.roomsPerRow - 1) {
+                this.position.y++;
+                this.world.showRoom(this.position.x, this.position.y);
+            }
+            this.checkCurrentRoom();
         }
-        this.checkCurrentRoom();
     }
 
     left() {
-        if (this.direction != 2) {
-            this.direction = 2;
-        } else if (this.position.x > 0) {
-            this.position.x--;
-            this.world.showRoom(this.position.x, this.position.y);
+        if (this.alive) {
+            if (this.direction != 2) {
+                this.direction = 2;
+            } else if (this.position.x > 0) {
+                this.position.x--;
+                this.world.showRoom(this.position.x, this.position.y);
+            }
+            this.checkCurrentRoom();
         }
-        this.checkCurrentRoom();
     }
 
     right() {
-        if (this.direction != 0) {
-            this.direction = 0;
-        } else if (this.position.x < this.world.roomsPerRow - 1) {
-            this.position.x++;
-            this.world.showRoom(this.position.x, this.position.y);
+        if (this.alive) {
+            if (this.direction != 0) {
+                this.direction = 0;
+            } else if (this.position.x < this.world.roomsPerRow - 1) {
+                this.position.x++;
+                this.world.showRoom(this.position.x, this.position.y);
+            }
+            this.checkCurrentRoom();
         }
-        this.checkCurrentRoom();
     }
 
     checkCurrentRoom() {
-        if (this.world.getRoom(this.position.x, this.position.y).containsWumpus() || this.world.getRoom(this.position.x, this.position.y).containsPit()) {
+        if (this.world.getRoom(this.position.x, this.position.y).containsWumpus() && this.world.wumpus.alive) {
             this.world.showAllRooms();
-            this.alive = false;
+            this.kill();
+        } else if (this.world.getRoom(this.position.x, this.position.y).containsPit()) {
+            this.world.showAllRooms();
+            this.kill();
         }
         if (this.world.getRoom(this.position.x, this.position.y).containsArrow) {
             this.world.getRoom(this.position.x, this.position.y).removeArrow();
             this.hasArrow = true;
             bell_sound.play();
-            console.log("Arrow!");
         }
     }
 
+    kill() {
+        this.alive = false;
+        lose_sound.play();
+        console.log("You died. Game over!")
+    }
+
     shoot() {
-        console.log("Shoot!");
         if (!this.hasArrow) {
             return;
         }
@@ -133,6 +152,7 @@ class Agent {
         if (victory) {
             this.world.wumpus.kill();
             console.log("Victory!");
+            victory_sound.play();
             this.world.showAllRooms();
         }
 

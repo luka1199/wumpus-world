@@ -5,6 +5,7 @@ class World {
         this.rooms = [];
         this.createRooms();
         this.agent = new Agent(createVector(0, 0), this);
+        this.agent.getCurrentRoom().containsAgent = true;
         this.wumpus = null;
         this.spawnObjects();
     }
@@ -72,7 +73,6 @@ class World {
         var arrowY = parseInt(availableRooms[arrowIndex].split(" ")[1]);
         availableRooms.splice(arrowIndex, 1);
         this.getRoom(arrowX, arrowY).addArrow();
-        console.log("Arrow in " + arrowX + ", " + arrowY);
     }
 
     getRoom(x, y) {

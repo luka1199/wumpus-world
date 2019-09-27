@@ -6,6 +6,7 @@ class Room {
         this.visible = false;
         this.objects = new Set();
         this.containsArrow = false;
+        this.containsAgent = false;
     }
 
     show() {
@@ -43,7 +44,7 @@ class Room {
     }
 
     containsWumpus() {
-        var result = false;
+        let result = false;
         this.objects.forEach(obj => {
             if (obj instanceof Wumpus) {
                 result = true;
@@ -53,7 +54,7 @@ class Room {
     }
 
     containsPit() {
-        var result = false;
+        let result = false;
         this.objects.forEach(obj => {
             if (obj instanceof Pit) {
                 result = true;
@@ -88,5 +89,35 @@ class Room {
             fill(150);
             square(this.position.x * this.size, this.position.y * this.size, this.size);
         }
+
+        if (this.containsAgent) {
+            if (this.attributes.has("Breeze")) {
+                let playing = false;
+                wind_sounds.forEach(sound => {
+                    if (sound.isPlaying()) {
+                        playing = true;
+                    }
+                });
+                if (!playing) {
+                    let windSound = wind_sounds[getRandomInt(wind_sounds.length)];
+                    windSound.play();
+                }
+            } else {
+                wind_sounds.forEach(sound => {
+                    if (sound.isPlaying()) {
+                        sound.stop();
+                    }
+                });
+            }
+
+            if (this.attributes.has("Stench")) {
+                if (!flies_sound.isPlaying()) {
+                    flies_sound.loop();
+                }
+            } else {
+                flies_sound.stop();
+            }
+        }
+
     }
 }
