@@ -86,7 +86,7 @@ class Room {
                 text(s, this.position.x * this.size, this.position.y * this.size + 20, this.size, this.size - 20);
             }
         } else {
-            fill(150);
+            fill(100);
             square(this.position.x * this.size, this.position.y * this.size, this.size);
         }
 

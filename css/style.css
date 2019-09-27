@@ -5,4 +5,19 @@ html {
 
 body {
     background-color: #252525;
+    background: url(../assets/textures/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#canvas-container {
+    height: 80%;
+    width: 100%;
+}
+
+#canvas-container canvas {
+    height: 100% !important;
+    width: auto !important;
 }
