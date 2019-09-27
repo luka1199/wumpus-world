@@ -1,9 +1,11 @@
 class Agent {
     constructor(pos, world) {
         this.position = pos;
+        // 0: right, 1: down, 2: left, 3: up
         this.direction = 1;
         this.world = world;
         this.alive = true;
+        this.hasArrow = false;
         world.showRoom(0, 0);
     }
 
@@ -73,6 +75,58 @@ class Agent {
             this.world.showAllRooms();
             this.alive = false;
         }
+        if (this.world.getRoom(this.position.x, this.position.y).containsArrow) {
+            this.world.getRoom(this.position.x, this.position.y).removeArrow();
+            this.hasArrow = true;
+            console.log("Arrow!");
+        }
+    }
+
+    shoot() {
+        console.log("Shoot!");
+        if (!this.hasArrow) {
+            return;
+        }
+        switch (this.direction){
+            case 0:
+                var y = this.position.y;
+                for (var x = this.position.x; x < roomsPerRow; x++) {
+                    if (this.world.getRoom(x, y).containsWumpus()) {
+                        console.log("Victory!");
+                        this.world.showAllRooms();
+                    }
+                }
+                break;
+            case 1:
+                var x = this.position.x;
+                for (var y = this.position.y; y < roomsPerRow; y++) {
+                    if (this.world.getRoom(x, y).containsWumpus()) {
+                        console.log("Victory!");
+                        this.world.showAllRooms();
+                    }
+                }
+                break;
+            case 2:
+                var y = this.position.y;
+                for (var x = this.position.x; x > 0; x--) {
+                    if (this.world.getRoom(x, y).containsWumpus()) {
+                        console.log("Victory!");
+                        this.world.showAllRooms();
+                    }
+                }
+                break;
+            case 3:
+                var x = this.position.x;
+                for (var y = this.position.y; y > 0; y--) {
+                    if (this.world.getRoom(x, y).containsWumpus()) {
+                        console.log("Victory!");
+                        this.world.showAllRooms();
+                    }
+                }
+                break;
+        }
+
+        this.hasArrow = false;
     }
 
 }

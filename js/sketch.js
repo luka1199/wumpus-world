@@ -1,5 +1,5 @@
 let canvasSize = 600;
-let roomsPerRow = 4;
+let roomsPerRow = 6;
 let wumpusWorld;
 let wumpus_image;
 let agent_up_image;
@@ -36,6 +36,8 @@ function keyPressed() {
         wumpusWorld.agent.left();
     } else if (keyCode === RIGHT_ARROW) {
         wumpusWorld.agent.right();
+    } else if (keyCode == ENTER) {
+        wumpusWorld.agent.shoot();
     }
 
 }

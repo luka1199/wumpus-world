@@ -36,7 +36,7 @@ class World {
         var wumpusY = parseInt(availableRooms[wumpusIndex].split(" ")[1]);
         availableRooms.splice(wumpusIndex, 1);
         this.getRoom(wumpusX, wumpusY).addObject(new Wumpus(createVector(wumpusX, wumpusY), this));
-        for (var i = -1; i < 1; i++) {
+        for (var i = -1; i <= 1; i++) {
             for (var j = -1; j <= 1; j++) {
                 if (i != 0 || j != 0) {
                     if (this.getRoom(wumpusX + i, wumpusY + j) != null) {
@@ -45,7 +45,6 @@ class World {
                 }
             }
         }
-
 
         // Add Pits
         for (var i = 0; i < Math.floor((this.roomsPerRow * this.roomsPerRow) / 8); i++) {
@@ -64,6 +63,14 @@ class World {
                 }
             }
         }
+
+        // Spawn arrow
+        var arrowIndex = getRandomInt(availableRooms.length);
+        var arrowX = parseInt(availableRooms[arrowIndex].split(" ")[0]);
+        var arrowY = parseInt(availableRooms[arrowIndex].split(" ")[1]);
+        availableRooms.splice(arrowIndex, 1);
+        this.getRoom(arrowX, arrowY).addArrow();
+        console.log("Arrow in " + arrowX + ", " + arrowY);
     }
 
     getRoom(x, y) {

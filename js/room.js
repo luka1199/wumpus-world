@@ -5,6 +5,7 @@ class Room {
         this.attributes = new Set();
         this.visible = false;
         this.objects = new Set();
+        this.containsArrow = false;
     }
 
     show() {
@@ -29,6 +30,14 @@ class Room {
 
     removeObject(obj) {
         this.objects.delete(obj);
+    }
+
+    addArrow() {
+        this.containsArrow = true;
+    }
+
+    removeArrow() {
+        this.containsArrow = false;
     }
 
     containsWumpus() {
