@@ -8,4 +8,4 @@ node app.js
 ```
 ```http://localhost:8080/```
 
-https://luka1199.github.io/wumpus-world/index.html
+https://luka1199.github.io/wumpus-world/
