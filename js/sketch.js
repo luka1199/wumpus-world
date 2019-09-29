@@ -1,11 +1,11 @@
 let canvasSize = 750;
-let roomsPerRow = 6;    
+let roomsPerRow = 5;    
 let wumpusWorld;
 let wumpus_image;
 let wumpus_dead_image;
 let agent_up_image;
 let agent_down_image;
-let agent_left_image;
+let agent_left_image
 let agent_right_image;
 let arrow_overlay_image;
 let terrain_image;
