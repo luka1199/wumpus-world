@@ -110,7 +110,7 @@ class Agent {
         if (!this.hasArrow) {
             return;
         }
-        var victory = true;
+        var victory = false;
         switch (this.direction){
             case 0:
                 var y = this.position.y;
