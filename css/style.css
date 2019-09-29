@@ -5,9 +5,6 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-h1 {
     color: white;
 }
 
@@ -53,4 +50,8 @@ h1 {
 
 #world-size-slider {
     width: 200px;
+}
+
+label {
+    font-size: 20px;
 }
