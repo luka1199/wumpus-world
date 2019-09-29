@@ -60,7 +60,6 @@ function setup() {
 
 function draw() {
     if (loading) {
-        console.log("Loading: ", loadCounter);
         background(100);
         smooth();
         bar.display();
