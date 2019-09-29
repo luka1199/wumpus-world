@@ -1,21 +1,33 @@
 <html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.js"></script><script src="js/sketch.js"></script>
-    <script src="js/progressbar.js"></script>
-    <script src="js/world.js"></script>
-    <script src="js/room.js"></script>
-    <script src="js/agent.js"></script>
-    <script src="js/wumpus.js"></script>
-    <script src="js/pit.js"></script>
-    <script src="js/gold.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <center>
-      <h1>Wumpus World</h1>
-      <div id="canvas-container"></div>
-    </center>
-  </body>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.js"></script>
+  <script src="js/sketch.js"></script>
+  <script src="js/progressbar.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/room.js"></script>
+  <script src="js/agent.js"></script>
+  <script src="js/wumpus.js"></script>
+  <script src="js/pit.js"></script>
+  <script src="js/gold.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <center><h1>Wumpus World</h1></center>
+    <div class="container">
+      <div id="canvas-container" class="canvas-container"></div>
+      <div class="sidebar-container">
+        <div class="sidebar">
+          <button onclick="restart()">Restart</button>
+        </div>
+      </div>
+    </div>
+</body>
+
 </html>
