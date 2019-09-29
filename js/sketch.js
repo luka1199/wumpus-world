@@ -17,6 +17,8 @@ let flies_sound;
 let pit_image;
 let loading = true;
 let loadCounter = 0;
+let filesToLoad = 16;
+let bar;
 
 
 function loadAssets(callback) {
@@ -37,26 +39,31 @@ function loadAssets(callback) {
         loadSound('assets/sounds/wind3.wav', callback)
     ];
     flies_sound = loadSound('assets/sounds/flies.wav', callback);
+    flies_sound.setVolume(0.5);
 }
 
 function loadCallback() {
     loadCounter++;
-    if (loadCounter == 16) {
+    bar.next();
+    if (loadCounter == filesToLoad) {
         loading = false;
     }
 }
 
 function setup() {
-    loadAssets(loadCallback);
-    flies_sound.setVolume(0.5);
     var canvas = createCanvas(canvasSize, canvasSize);
     canvas.parent("canvas-container");
+    bar = new ProgressBar(filesToLoad);
+    loadAssets(loadCallback);
     wumpusWorld = new World(roomsPerRow);
 }
 
 function draw() {
     if (loading) {
         console.log("Loading: ", loadCounter);
+        background(100);
+        smooth();
+        bar.display();
     } else {
         background(255);
         smooth();
