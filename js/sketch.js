@@ -227,7 +227,11 @@ function keyPressed() {
         } else {
             restart();
         }
+    } else if (keyCode == 32) {
+        restart();
     }
+
+
     wumpusWorld.rooms.forEach(row => {
         row.forEach(room => {
             room.containsAgent = false;

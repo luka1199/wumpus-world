@@ -6,7 +6,11 @@ class Agent {
         this.world = world;
         this.alive = true;
         this.hasArrow = false;
-        world.showRoom(0, 0);
+        world.showRoom(pos.x, pos.y);
+        world.showRoom(pos.x - 1, pos.y);
+        world.showRoom(pos.x, pos.y - 1);
+        world.showRoom(pos.x + 1, pos.y);
+        world.showRoom(pos.x, pos.y + 1);
     }
 
     display() {

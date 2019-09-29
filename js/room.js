@@ -76,7 +76,8 @@ class Room {
                 });
             } else {
                 fill(0);
-                textSize(this.size / 4);
+                let size = this.size / 4 < 20 ? this.size / 4 : 20;
+                textSize(size);
                 textAlign(CENTER, TOP);
                 strokeWeight(0.5);
                 let s = "";
