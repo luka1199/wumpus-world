@@ -17,7 +17,7 @@ let flies_sound;
 let pit_image;
 
 
-function setup() {
+function preload() {
     wumpus_image = loadImage('assets/textures/wumpus.png');
     wumpus_dead_image = loadImage('assets/textures/wumpus_dead.png');
     agent_up_image = loadImage('assets/textures/agent_up.png');
@@ -30,10 +30,14 @@ function setup() {
     bell_sound = loadSound('assets/sounds/bell.wav');
     victory_sound = loadSound('assets/sounds/victory.wav');
     lose_sound = loadSound('assets/sounds/lose.wav');
-    wind_sounds = [loadSound('assets/sounds/wind.wav'), 
-                loadSound('assets/sounds/wind2.wav'), 
-                loadSound('assets/sounds/wind3.wav')];
+    wind_sounds = [loadSound('assets/sounds/wind.wav'),
+        loadSound('assets/sounds/wind2.wav'),
+        loadSound('assets/sounds/wind3.wav')
+    ];
     flies_sound = loadSound('assets/sounds/flies.wav');
+}
+
+function setup() {
     flies_sound.setVolume(0.5);
     var canvas = createCanvas(canvasSize, canvasSize);
     canvas.parent("canvas-container");
