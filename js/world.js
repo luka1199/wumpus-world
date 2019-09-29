@@ -4,8 +4,7 @@ class World {
         this.roomSize = canvasSize / this.roomsPerRow;
         this.rooms = [];
         this.createRooms();
-        this.agent = new Agent(createVector(0, 0), this);
-        this.agent.getCurrentRoom().containsAgent = true;
+        this.agent;
         this.wumpus = null;
         this.spawnObjects();
     }
@@ -26,11 +25,29 @@ class World {
                 availableRooms.push(i + " " + j);
             }
         }
-        // Remove agent position
-        availableRooms.splice(availableRooms.indexOf(this.agent.position.x + " " + this.agent.position.y), 1);
-        availableRooms.splice(availableRooms.indexOf((this.agent.position.x + 1) + " " + this.agent.position.y), 1);
-        availableRooms.splice(availableRooms.indexOf(this.agent.position.x + " " + (this.agent.position.y + 1)), 1);
-        availableRooms.splice(availableRooms.indexOf((this.agent.position.x + 1) + " " + (this.agent.position.y + 1)), 1);
+        // Spawn agent
+        // var agentIndex = getRandomInt(availableRooms.length - 1);
+        // var agentIndex = getRandomInt(availableRooms.length - 1);
+        // var agentX = parseInt(availableRooms[agentIndex].split(" ")[0]);
+        // var agentY = parseInt(availableRooms[agentIndex].split(" ")[1]);
+        var agentPos = [[0, 0], 
+                        [0, this.roomsPerRow - 1], 
+                        [this.roomsPerRow - 1, 0], 
+                        [this.roomsPerRow - 1, this.roomsPerRow - 1]]
+                        [getRandomInt(4)];
+        var agentX = agentPos[0];
+        var agentY = agentPos[1];
+        this.agent = new Agent(createVector(agentX, agentY), this);
+        this.agent.getCurrentRoom().containsAgent = true;
+        for (var dx = -1; dx <= 1; dx++) {
+            for (var dy = -1; dy <= 1; dy++) {
+                let posX = this.agent.position.x + dx;
+                let posY = this.agent.position.y + dy;
+                if (posX >= 0 || posX < this.roomsPerRow || posY >= 0 || posY < this.roomsPerRow) {
+                    availableRooms.splice(availableRooms.indexOf(posX + " " + posY), 1);
+                }
+            }
+        }
 
         // Add Wumpus
         var wumpusIndex = getRandomInt(availableRooms.length - 1);
@@ -84,6 +101,9 @@ class World {
     }
 
     showRoom(x, y) {
+        if (x < 0 || x > this.roomsPerRow - 1 || y < 0 || y > this.roomsPerRow - 1) {
+            return;
+        }
         this.rooms[x][y].show();
     }
 

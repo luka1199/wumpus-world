@@ -76,14 +76,15 @@ class Room {
                 });
             } else {
                 fill(0);
-                textSize(18);
+                let size = this.size / 4 < 20 ? this.size / 4 : 20;
+                textSize(size);
                 textAlign(CENTER, TOP);
                 strokeWeight(0.5);
                 let s = "";
                 this.attributes.forEach((value) => {
                     s += value + "\n"
                 });
-                text(s, this.position.x * this.size, this.position.y * this.size + 20, this.size, this.size - 20);
+                text(s, this.position.x * this.size, this.position.y * this.size + this.size * 0.1, this.size, this.size - this.size * 0.1);
             }
         } else {
             fill(100);
