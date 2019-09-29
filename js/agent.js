@@ -107,7 +107,7 @@ class Agent {
     }
 
     shoot() {
-        if (!this.hasArrow) {
+        if (!this.hasArrow || !this.alive) {
             return;
         }
         var victory = false;
