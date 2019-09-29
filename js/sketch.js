@@ -15,29 +15,39 @@ let bell_sound;
 let wind_sounds;
 let flies_sound;
 let pit_image;
+let loading = true;
+let loadCounter = 0;
 
 
-function preload() {
-    wumpus_image = loadImage('assets/textures/wumpus.png');
-    wumpus_dead_image = loadImage('assets/textures/wumpus_dead.png');
-    agent_up_image = loadImage('assets/textures/agent_up.png');
-    agent_down_image = loadImage('assets/textures/agent_down.png');
-    agent_left_image = loadImage('assets/textures/agent_left.png');
-    agent_right_image = loadImage('assets/textures/agent_right.png');
-    arrow_overlay_image = loadImage('assets/textures/arrow_overlay.png')
-    pit_image = loadImage('assets/textures/pit.png');
-    terrain_image = loadImage('assets/textures/terrain.png');
-    bell_sound = loadSound('assets/sounds/bell.wav');
-    victory_sound = loadSound('assets/sounds/victory.wav');
-    lose_sound = loadSound('assets/sounds/lose.wav');
-    wind_sounds = [loadSound('assets/sounds/wind.wav'),
-        loadSound('assets/sounds/wind2.wav'),
-        loadSound('assets/sounds/wind3.wav')
+function loadAssets(callback) {
+    wumpus_image = loadImage('assets/textures/wumpus.png', callback);
+    wumpus_dead_image = loadImage('assets/textures/wumpus_dead.png', callback);
+    agent_up_image = loadImage('assets/textures/agent_up.png', callback);
+    agent_down_image = loadImage('assets/textures/agent_down.png', callback);
+    agent_left_image = loadImage('assets/textures/agent_left.png', callback);
+    agent_right_image = loadImage('assets/textures/agent_right.png', callback);
+    arrow_overlay_image = loadImage('assets/textures/arrow_overlay.png', callback)
+    pit_image = loadImage('assets/textures/pit.png', callback);
+    terrain_image = loadImage('assets/textures/terrain.png', callback);
+    bell_sound = loadSound('assets/sounds/bell.wav', callback);
+    victory_sound = loadSound('assets/sounds/victory.wav', callback);
+    lose_sound = loadSound('assets/sounds/lose.wav', callback);
+    wind_sounds = [loadSound('assets/sounds/wind.wav', callback),
+        loadSound('assets/sounds/wind2.wav', callback),
+        loadSound('assets/sounds/wind3.wav', callback)
     ];
-    flies_sound = loadSound('assets/sounds/flies.wav');
+    flies_sound = loadSound('assets/sounds/flies.wav', callback);
+}
+
+function loadCallback() {
+    loadCounter++;
+    if (loadCounter == 16) {
+        loading = false;
+    }
 }
 
 function setup() {
+    loadAssets(loadCallback);
     flies_sound.setVolume(0.5);
     var canvas = createCanvas(canvasSize, canvasSize);
     canvas.parent("canvas-container");
@@ -45,9 +55,13 @@ function setup() {
 }
 
 function draw() {
-    background(255);
-    smooth();
-    wumpusWorld.display();
+    if (loading) {
+        console.log("Loading: ", loadCounter);
+    } else {
+        background(255);
+        smooth();
+        wumpusWorld.display();
+    }
 }
 
 function keyPressed() {
