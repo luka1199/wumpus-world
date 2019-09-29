@@ -58,6 +58,10 @@ function setup() {
     wumpusWorld = new World(roomsPerRow);
 }
 
+function restart() {
+    wumpusWorld = new World(roomsPerRow);
+}
+
 function draw() {
     if (loading) {
         background(100);
