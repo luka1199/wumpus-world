@@ -1,5 +1,5 @@
 let canvasSize = 750;
-let roomsPerRow = 5;    
+let roomsPerRow = 4;    
 let wumpusWorld;
 let wumpus_image;
 let wumpus_dead_image;
