@@ -21,142 +21,6 @@ let loadCounter = 0;
 let filesToLoad = 16;
 let bar;
 
-let agentWalkDownFrames = [{
-    "name": "agent_walk_down1",
-    "frame": {
-        "x": 48 * 0,
-        "y": 48 * 0,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_down2",
-    "frame": {
-        "x": 48 * 0,
-        "y": 48 * 1,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_down3",
-    "frame": {
-        "x": 48 * 0,
-        "y": 48 * 2,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_down4",
-    "frame": {
-        "x": 48 * 0,
-        "y": 48 * 3,
-        "width": 48,
-        "height": 48
-    }
-}];
-
-let agentWalkLeftFrames = [{
-    "name": "agent_walk_left1",
-    "frame": {
-        "x": 48 * 1,
-        "y": 48 * 0,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_left2",
-    "frame": {
-        "x": 48 * 1,
-        "y": 48 * 1,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_left3",
-    "frame": {
-        "x": 48 * 1,
-        "y": 48 * 2,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_left4",
-    "frame": {
-        "x": 48 * 1,
-        "y": 48 * 3,
-        "width": 48,
-        "height": 48
-    }
-}];
-
-let agentWalkUpFrames = [{
-    "name": "agent_walk_up1",
-    "frame": {
-        "x": 48 * 2,
-        "y": 48 * 0,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_up2",
-    "frame": {
-        "x": 48 * 2,
-        "y": 48 * 1,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_up3",
-    "frame": {
-        "x": 48 * 2,
-        "y": 48 * 2,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_up4",
-    "frame": {
-        "x": 48 * 2,
-        "y": 48 * 3,
-        "width": 48,
-        "height": 48
-    }
-}];
-
-let agentWalkRightFrames = [{
-    "name": "agent_walk_right1",
-    "frame": {
-        "x": 48 * 3,
-        "y": 48 * 0,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_right2",
-    "frame": {
-        "x": 48 * 3,
-        "y": 48 * 1,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_right3",
-    "frame": {
-        "x": 48 * 3,
-        "y": 48 * 2,
-        "width": 48,
-        "height": 48
-    }
-}, {
-    "name": "agent_walk_right4",
-    "frame": {
-        "x": 48 * 3,
-        "y": 48 * 3,
-        "width": 48,
-        "height": 48
-    }
-}];
-
 
 function loadAssets(callback) {
     wumpus_image = loadImage('assets/textures/wumpus.png', callback);
@@ -165,7 +29,6 @@ function loadAssets(callback) {
     agent_down_image = loadImage('assets/textures/agent_down.png', callback);
     agent_left_image = loadImage('assets/textures/agent_left.png', callback);
     agent_right_image = loadImage('assets/textures/agent_right.png', callback);
-    agent_walk_sprite_sheet = loadSpriteSheet('assets/textures/agent_walk.png', 48, 48, 16);
     arrow_overlay_image = loadImage('assets/textures/arrow_overlay.png', callback)
     pit_image = loadImage('assets/textures/pit.png', callback);
     terrain_image = loadImage('assets/textures/terrain.png', callback);
@@ -198,6 +61,12 @@ function setup() {
 
 function restart() {
     wumpusWorld = new World(roomsPerRow);
+    flies_sound.stop();
+    wind_sounds.forEach(sound => {
+        sound.stop();
+    });
+    victory_sound.stop();
+    lose_sound.stop();
 }
 
 function draw() {
