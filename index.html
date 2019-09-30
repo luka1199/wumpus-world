@@ -41,7 +41,9 @@
           <a class="nav-link" href="https://github.com/luka1199/wumpus-world">Repo</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="">About</a>
+          <a class="nav-link" href="" data-toggle="modal" data-target="#aboutModal">
+            About
+          </a>
         </li>
       </ul>
     </div>
@@ -56,6 +58,42 @@
           <input type="range" min="4" max="20" value="5" class="slider" id="world-size-slider">
         </div>
         <button type="button" class="btn btn-dark btn-lg" onclick="restart()">Restart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="aboutModalLabel">The Wumpus world</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          The Wumpus world is a simple world example to illustrate the worth of a knowledge-based agent and to represent
+          knowledge
+          representation. It was inspired by a video game Hunt the Wumpus by Gregory Yob in 1973. <br>
+          <br>
+          The Wumpus world is a cave which has rooms connected with passageways. We have a knowledge-based agent who
+          will go
+          forward in this world. The cave has a room with a beast which is called Wumpus, who eats anyone who enters the
+          room. The
+          Wumpus can be shot by the agent, but the agent has to find an arrow first, which spawns somewhere in the cave.
+          In the
+          Wumpus world, there are pits which are bottomless, and if the agent falls in a pit, he will be stuck there
+          forever. The
+          agent goal is to find the arrow and kill the Wumpus without falling into a pit or getting killed by the
+          Wumpus. <br>
+          In the rooms directly adjacent to a pit, the agent can perceive a breeze.
+          In the rooms directly adjacent to the wumpus, the agent can perceive a stench.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>

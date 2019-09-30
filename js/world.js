@@ -20,9 +20,9 @@ class World {
 
     spawnObjects() {
         var availableRooms = []
-        for (var i = 0; i < this.roomsPerRow; i++) {
-            for (var j = 0; j < this.roomsPerRow; j++) {
-                availableRooms.push(i + " " + j);
+        for (var dx = 0; dx < this.roomsPerRow; dx++) {
+            for (var dy = 0; dy < this.roomsPerRow; dy++) {
+                availableRooms.push(dx + " " + dy);
             }
         }
         // Spawn agent
@@ -56,11 +56,11 @@ class World {
         availableRooms.splice(wumpusIndex, 1);
         this.wumpus = new Wumpus(createVector(wumpusX, wumpusY), this);
         this.getRoom(wumpusX, wumpusY).addObject(this.wumpus);
-        for (var i = -1; i <= 1; i++) {
-            for (var j = -1; j <= 1; j++) {
-                if (i != 0 || j != 0) {
-                    if (this.getRoom(wumpusX + i, wumpusY + j) != null) {
-                        this.getRoom(wumpusX + i, wumpusY + j).addAttribute("Stench");
+        for (var dx = -1; dx <= 1; dx++) {
+            for (var dy = -1; dy <= 1; dy++) {
+                if ((dx != 0 || dy != 0) && Math.abs(dx) + Math.abs(dy) < 2) {
+                    if (this.getRoom(wumpusX + dx, wumpusY + dy) != null) {
+                        this.getRoom(wumpusX + dx, wumpusY + dy).addAttribute("Stench");
                     }
                 }
             }
@@ -75,7 +75,7 @@ class World {
             this.getRoom(pitX, pitY).addObject(new Pit(createVector(pitX, pitY), this));
             for (var dx = -1; dx <= 1; dx++) {
                 for (var dy = -1; dy <= 1; dy++) {
-                    if (dx != 0 || dy != 0) {
+                    if ((dx != 0 || dy != 0) && Math.abs(dx) + Math.abs(dy) < 2) {
                         if (this.getRoom(pitX + dx, pitY + dy) != null) {
                             this.getRoom(pitX + dx, pitY + dy).addAttribute("Breeze");
                         }
