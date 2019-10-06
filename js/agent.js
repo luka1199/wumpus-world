@@ -42,7 +42,7 @@ class Agent {
     }
 
     up() {
-        if (this.alive) {
+        if (this.alive && this.world.wumpus.alive) {
             if (this.direction != 3) {
                 this.direction = 3;
             } else if (this.position.y > 0) {
@@ -54,7 +54,7 @@ class Agent {
     }
 
     down() {
-        if (this.alive) {
+        if (this.alive && this.world.wumpus.alive) {
             if (this.direction != 1) {
                 this.direction = 1;
             } else if (this.position.y < this.world.roomsPerRow - 1) {
@@ -66,7 +66,7 @@ class Agent {
     }
 
     left() {
-        if (this.alive) {
+        if (this.alive && this.world.wumpus.alive) {
             if (this.direction != 2) {
                 this.direction = 2;
             } else if (this.position.x > 0) {
@@ -78,7 +78,7 @@ class Agent {
     }
 
     right() {
-        if (this.alive) {
+        if (this.alive && this.world.wumpus.alive) {
             if (this.direction != 0) {
                 this.direction = 0;
             } else if (this.position.x < this.world.roomsPerRow - 1) {
