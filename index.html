@@ -3,6 +3,7 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
   </script>
@@ -25,6 +26,7 @@
   <script src="js/misc.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap-social.css">
 </head>
 
 <body>
@@ -41,12 +43,20 @@
           <a class="nav-link" href="https://github.com/luka1199/wumpus-world">Repo</a>
         </li>
         <li class="nav-item active">
+          <a class="nav-link" href="" data-toggle="modal" data-target="#controlsModal">
+            Controls
+          </a>
+        </li>
+        <li class="nav-item active">
           <a class="nav-link" href="" data-toggle="modal" data-target="#aboutModal">
             About
           </a>
         </li>
       </ul>
     </div>
+    <a class="btn btn-social-icon btn-github" href="https://github.com/luka1199">
+      <span class="fa fa-github"></span>
+    </a>
   </nav>
 
   <div class="container">
@@ -62,7 +72,28 @@
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- Controls -->
+  <div class="modal fade" id="controlsModal" tabindex="-1" role="dialog" aria-labelledby="controlsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="controlsModalLabel">Controls</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Controls
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
   <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
