@@ -82,13 +82,14 @@ function draw() {
 }
 
 function keyPressed() {
-    if (keyCode === UP_ARROW) {
+    // console.log(keyCode);
+    if (keyCode === UP_ARROW || keyCode === 87) {
         wumpusWorld.agent.up();
-    } else if (keyCode === DOWN_ARROW) {
+    } else if (keyCode === DOWN_ARROW || keyCode === 83) {
         wumpusWorld.agent.down();
-    } else if (keyCode === LEFT_ARROW) {
+    } else if (keyCode === LEFT_ARROW || keyCode === 65) {
         wumpusWorld.agent.left();
-    } else if (keyCode === RIGHT_ARROW) {
+    } else if (keyCode === RIGHT_ARROW || keyCode === 68) {
         wumpusWorld.agent.right();
     } else if (keyCode == ENTER) {
         if (wumpusWorld.agent.alive && wumpusWorld.wumpus.alive) {
