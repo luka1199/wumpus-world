@@ -58,3 +58,13 @@ h1, label {
 label {
     font-size: 20px;
 }
+
+#github-profile-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.collapse.show {
+    position: relative;
+}
