@@ -3,6 +3,6 @@ $(document).on('input', '#world-size-slider', function () {
     restart();
 });
 
-$(document).on('mouseup', '#world-size-slider', function () {
+$(document).on('mouseup', 'input[type=\'range\']', function () {
     $(this).blur();
 });  
