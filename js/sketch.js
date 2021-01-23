@@ -54,6 +54,7 @@ function loadCallback() {
 
 function setup() {
     var canvas = createCanvas(canvasSize, canvasSize);
+    canvas.id("wumpus-world-canvas");
     canvas.parent("canvas-container");
     bar = new ProgressBar(filesToLoad);
     loadAssets(loadCallback);

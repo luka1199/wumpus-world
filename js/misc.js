@@ -2,6 +2,13 @@ $(document).ready(function () {
     updateWorldSize();
 });
 
+$(document).keydown(function (e) {
+    console.log(e);
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.view.event.preventDefault();
+    }
+})
+
 $(document).on('input', '#world-size-slider', function () {
     updateWorldSize();
 });

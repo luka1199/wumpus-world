@@ -159,7 +159,6 @@ class Agent {
             victory_sound.play();
             this.world.showAllRooms();
             if (worldAutoIncrement) {
-                console.log(roomsPerRow);
                 setWorldSize(parseInt(roomsPerRow) + 1);
             }
         } else {
