@@ -66,12 +66,16 @@
     <div id="canvas-container" class="canvas-container"></div>
     <div class="sidebar-container">
       <div class="sidebar">
-        <div class="slidecontainer">
-          <label>World size:</label><br>
+        <div class="sidebar-content">
+          <label for="world-size-slider">World size: <span class="world-size-value"></span></label><br>
           <input type="range" min="4" max="20" value="4" class="slider" id="world-size-slider">
         </div>
-        <div class="slidecontainer">
-          <label>Volume: <span class="volume-value"></span></label><br>
+        <div class="sidebar-content">
+          <input type="checkbox" id="world-auto-increment">
+          <label for="world-auto-increment">Increase world size after victory</label>
+        </div>
+        <div class="sidebar-content">
+          <label for="volume-slider">Volume: <span class="volume-value"></span></label><br>
           <input type="range" min="0" max="100" value="10" class="slider" id="volume-slider">
         </div>
         <button type="button" class="btn btn-dark btn-lg" onclick="restart(); this.blur();">Restart</button>

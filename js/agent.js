@@ -106,7 +106,7 @@ class Agent {
 
     kill() {
         this.alive = false;
-        lose_sound.play();
+        defeat_sound.play();
         console.log("You died. Game over!")
     }
 
@@ -158,6 +158,12 @@ class Agent {
             console.log("Victory!");
             victory_sound.play();
             this.world.showAllRooms();
+            if (worldAutoIncrement) {
+                console.log(roomsPerRow);
+                setWorldSize(parseInt(roomsPerRow) + 1);
+            }
+        } else {
+
         }
 
         this.hasArrow = false;
