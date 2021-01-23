@@ -68,3 +68,7 @@ label {
 .collapse.show {
     position: relative;
 }
+
+#world-auto-increment {
+    margin-right: 5px;
+}
