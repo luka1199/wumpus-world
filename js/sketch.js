@@ -13,7 +13,7 @@ let terrain_image;
 let victory_sound;
 let lose_sound;
 let bell_sound;
-let wind_sounds;
+let wind_sound;
 let flies_sound;
 let pit_image;
 let loading = true;
@@ -35,7 +35,7 @@ function loadAssets(callback) {
     bell_sound = loadSound('assets/sounds/bell.wav', callback);
     victory_sound = loadSound('assets/sounds/victory.wav', callback);
     lose_sound = loadSound('assets/sounds/lose.wav', callback);
-    wind_sounds = [loadSound('assets/sounds/wind.wav', callback),
+    wind_sound = [loadSound('assets/sounds/wind.wav', callback),
         loadSound('assets/sounds/wind2.wav', callback),
         loadSound('assets/sounds/wind3.wav', callback)
     ];
@@ -57,12 +57,13 @@ function setup() {
     bar = new ProgressBar(filesToLoad);
     loadAssets(loadCallback);
     wumpusWorld = new World(roomsPerRow);
+    updateVolume();
 }
 
 function restart() {
     wumpusWorld = new World(roomsPerRow);
     flies_sound.stop();
-    wind_sounds.forEach(sound => {
+    wind_sound.forEach(sound => {
         sound.stop();
     });
     victory_sound.stop();

@@ -6,6 +6,7 @@ class World {
         this.createRooms();
         this.agent;
         this.wumpus = null;
+        this.arrowPosition;
         this.spawnObjects();
     }
 
@@ -90,6 +91,7 @@ class World {
         var arrowY = parseInt(availableRooms[arrowIndex].split(" ")[1]);
         availableRooms.splice(arrowIndex, 1);
         this.getRoom(arrowX, arrowY).addArrow();
+        this.arrowPosition = createVector(arrowX, arrowY);
     }
 
     getRoom(x, y) {

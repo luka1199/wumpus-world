@@ -94,17 +94,17 @@ class Room {
         if (this.containsAgent) {
             if (this.attributes.has("Breeze")) {
                 let playing = false;
-                wind_sounds.forEach(sound => {
+                wind_sound.forEach(sound => {
                     if (sound.isPlaying()) {
                         playing = true;
                     }
                 });
                 if (!playing) {
-                    let windSound = wind_sounds[getRandomInt(wind_sounds.length)];
+                    let windSound = wind_sound[getRandomInt(wind_sound.length)];
                     windSound.play();
                 }
             } else {
-                wind_sounds.forEach(sound => {
+                wind_sound.forEach(sound => {
                     if (sound.isPlaying()) {
                         sound.stop();
                     }
