@@ -19,6 +19,17 @@ h1, label {
     margin: 30px auto 0px auto;
 }
 
+.canvas-container {
+    max-width: 100%;
+}
+
+#wumpus-world-canvas {
+    max-width: 750px;
+    max-height: 750px;
+    width: 100% !important;
+    height: auto !important;
+}
+
 .slider {
     -webkit-appearance: none;
     width: 100%;
