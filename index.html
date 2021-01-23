@@ -13,8 +13,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
+  <script src="js/misc.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.js" onload="updateVolume"></script>
   <script src="js/sketch.js"></script>
   <script src="js/progressbar.js"></script>
   <script src="js/world.js"></script>
@@ -23,7 +24,7 @@
   <script src="js/wumpus.js"></script>
   <script src="js/pit.js"></script>
   <script src="js/gold.js"></script>
-  <script src="js/misc.js"></script>
+  <script src="js/astar.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bootstrap-social.css">
@@ -40,7 +41,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="https://github.com/luka1199/wumpus-world">Repo</a>
+          <a target="_blank" class="nav-link" href="https://github.com/luka1199/wumpus-world">Repo</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="" data-toggle="modal" data-target="#controlsModal">
@@ -53,7 +54,7 @@
           </a>
         </li>
         <li class="nav-item active" id="github-profile-button">
-          <a class="btn btn-social-icon btn-github" href="https://github.com/luka1199">
+          <a class="btn btn-social-icon btn-github" target="_blank" href="https://github.com/luka1199">
             <span class="fa fa-github"></span>
           </a>
         </li>
@@ -68,6 +69,10 @@
         <div class="slidecontainer">
           <label>World size:</label><br>
           <input type="range" min="4" max="20" value="4" class="slider" id="world-size-slider">
+        </div>
+        <div class="slidecontainer">
+          <label>Volume: <span class="volume-value"></span></label><br>
+          <input type="range" min="0" max="100" value="10" class="slider" id="volume-slider">
         </div>
         <button type="button" class="btn btn-dark btn-lg" onclick="restart()">Restart</button>
       </div>
