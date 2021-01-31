@@ -68,7 +68,7 @@ class World {
         }
 
         // Add Pits
-        for (var i = 0; i < Math.floor((this.roomsPerRow * this.roomsPerRow) / 9); i++) {
+        for (var i = 0; i < Math.floor((this.roomsPerRow * this.roomsPerRow) / 10); i++) {
             var pitIndex = getRandomInt(availableRooms.length - 1);
             var pitX = parseInt(availableRooms[pitIndex].split(" ")[0]);
             var pitY = parseInt(availableRooms[pitIndex].split(" ")[1]);
