@@ -64,7 +64,7 @@ class Room {
     }
 
     display() {
-        strokeWeight(2);
+        strokeWeight(1);
         stroke(30);
         if (this.visible) {
             image(terrain_image, this.position.x * this.size, this.position.y * this.size, this.size, this.size);
